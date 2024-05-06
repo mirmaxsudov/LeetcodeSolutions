@@ -7,14 +7,34 @@ public class BoatsToSavePeople881 {
         System.out.println(numRescueBoats(
                 new int[]{1, 2}, 3
         ));
+        System.out.println(numRescueBoats(
+                new int[]{3, 2, 2, 1}, 3
+        ));
+        System.out.println(numRescueBoats(
+                new int[]{3, 5, 3, 4}, 5
+        ));
     }
 
     public static int numRescueBoats(int[] people, int limit) {
         int countBoats = 0;
-
+        int peopleCount = 0;
         quickSort(people);
 
-        System.out.println(Arrays.toString(people));
+        int totalW = 0;
+        for (int i = people.length - 1; i >= 0; i--) {
+            totalW += people[i];
+            peopleCount++;
+
+            if (peopleCount == 2) {
+                if (totalW == limit) {
+                    totalW = 0;
+                    countBoats++;
+                } else if (totalW > limit) {
+                    i++;
+                    totalW = 0;
+                }
+            }
+        }
 
         return countBoats;
     }
