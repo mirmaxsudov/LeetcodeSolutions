@@ -1,6 +1,5 @@
 package tasks;
 
-import java.util.*;
 
 public class BoatsToSavePeople881 {
     public static void main(String[] args) {
