@@ -1,11 +1,28 @@
 package tasks;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class RelativeRanks506 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(findRelativeRanks(new int[]{5, 4, 3, 2, 1})));
-        System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
+        String time = "13:05:2024";
+
+        String[] values = time.split(":");
+        int day = Integer.parseInt(values[0]);
+        int month = Integer.parseInt(values[1]);
+        int year = Integer.parseInt(values[2]);
+
+        LocalDateTime dateTime = LocalDateTime.of(year, month, day, 0, 0, 0);
+        System.out.println("dateTime = " + dateTime);
+
+    }
+
+    public static boolean checkString(String value) {
+        return value == null || value.isEmpty() || value.isBlank();
+    }
+
+    public static boolean checkPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("^\\+998\\d{9}$");
     }
 
     public static String[] findRelativeRanks(int[] score) {
