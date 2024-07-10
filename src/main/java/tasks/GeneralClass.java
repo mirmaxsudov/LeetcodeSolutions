@@ -4,7 +4,39 @@ import java.util.*;
 
 public class GeneralClass {
     public static void main(String[] args) {
+        GeneralClass generalClass = new GeneralClass();
+        generalClass.numWaterBottles(5, 5);
+    }
 
+    public int numWaterBottles(int numBottles, int numExchange) {
+        int result = numBottles;
+
+        while (numBottles >= numExchange) {
+            result += numBottles / numExchange;
+            numBottles = (numBottles / numExchange) + (numBottles % numExchange);
+        }
+
+        return result;
+    }
+
+    public int minOperations(String[] logs) {
+        //     d1/           ../        ./
+        int parent = 0;
+
+        for (String log : logs) {
+            if (log.equals("./"))
+                continue;
+            else if (log.equals("../") && parent == 0)
+                continue;
+
+            if (log.equals("../")) {
+                parent--;
+            } else if (!log.contains(".") && log.endsWith("/")) {
+                parent++;
+            }
+        }
+
+        return parent;
     }
 
     public static int[] intersect(int[] nums1, int[] nums2) {
