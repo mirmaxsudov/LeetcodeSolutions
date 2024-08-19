@@ -4,8 +4,6 @@ import java.util.*;
 
 public class GeneralClass {
     public static void main(String[] args) {
-        GeneralClass generalClass = new GeneralClass();
-        generalClass.numWaterBottles(5, 5);
     }
 
     public int numWaterBottles(int numBottles, int numExchange) {
