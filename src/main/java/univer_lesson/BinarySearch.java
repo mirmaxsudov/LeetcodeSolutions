@@ -43,7 +43,7 @@ public class BinarySearch {
         if (left > right)
             return -1;
 
-        int middle = (left + right) / 2;
+        int middle = (left + right) >> 1;
 
         if (array[middle] == target)
             return middle;
