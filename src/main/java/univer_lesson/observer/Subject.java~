@@ -1,0 +1,4 @@
+package univer_lesson.observer;
+
+public interface Subject {
+}

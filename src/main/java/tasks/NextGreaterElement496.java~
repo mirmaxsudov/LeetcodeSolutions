@@ -1,0 +1,14 @@
+package tasks;
+
+public class NextGreaterElement496 {
+    public static void main(String[] args) {
+
+    }
+
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] res = new int[nums1.length];
+        
+
+        return res;
+    }
+}

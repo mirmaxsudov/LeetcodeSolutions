@@ -1,0 +1,41 @@
+package univer_lesson.builder;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@AllArgsConstructor
+public class Computer {
+    private String cpu;
+    private String ram;
+    private String hdd;
+
+
+    public static class ComputerBuilder {
+        private String cpu;
+        private String ram;
+        private String hdd;
+
+        public ComputerBuilder setCpu(String cpu) {
+            this.cpu = cpu;
+            return this;
+        }
+
+        public ComputerBuilder setRam(String ram) {
+            this.ram = ram;
+            return this;
+        }
+
+        public ComputerBuilder setHdd(String hdd) {
+            this.hdd = hdd;
+            return this;
+        }
+
+        public Computer build() {
+            return new Computer("", " ", "");
+        }
+    }
+}

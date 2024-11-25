@@ -1,0 +1,28 @@
+package univer_lesson.doubleLinkendList;
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+
+        linkedList.insertBeg(10);
+        linkedList.insertBeg(20);
+        linkedList.insertBeg(30);
+        linkedList.insertBeg(40);
+
+        System.out.println(linkedList);
+        linkedList.deleteEnd();
+
+
+//        linkedList.insert(1);
+//        linkedList.insert(2);
+//        linkedList.deleteBeg();
+//        linkedList.insert(3);
+//        linkedList.insert(4);
+//        linkedList.insert(5);
+//        linkedList.insertBeg(31);
+//        linkedList.delete(4);
+//        linkedList.deleteEnd();
+
+        System.out.println(linkedList);
+    }
+}

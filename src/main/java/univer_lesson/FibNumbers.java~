@@ -1,0 +1,21 @@
+package univer_lesson;
+
+public class FibNumbers {
+    public static void main(String[] args) {
+        System.out.println(findFicWithRec(0));
+        System.out.println(findFicWithRec(1));
+        System.out.println(findFicWithRec(2));
+        System.out.println(findFicWithRec(3));
+        System.out.println(findFicWithRec(4));
+        System.out.println(findFicWithRec(5));
+        System.out.println(findFicWithRec(6));
+    }
+
+    public static int findFicWithRec(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        return findFicWithRec(n - 1) + findFicWithRec(n - 2);
+    }
+}

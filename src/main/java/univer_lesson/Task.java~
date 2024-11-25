@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class Task {
     public static void main(String[] args) {
+        System.out.println(check("ab", "aabbd"));
+        System.out.println(check("xyz", "xabyzzbyx"));
+        System.out.println(check("aab", "aabbd"));
     }
 
     public static long check(String str, String target) {

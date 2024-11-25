@@ -1,0 +1,5 @@
+package dataStructres;
+
+public class Test {
+    public static int num = 0;
+}

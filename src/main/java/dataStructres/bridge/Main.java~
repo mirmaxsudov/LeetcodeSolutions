@@ -1,0 +1,11 @@
+package dataStructres.bridge;
+
+public class Main {
+    public static void main(String[] args) {
+        AmericanRestaurant cameramanRestaurant = new AmericanRestaurant(new PepperoniPizza());
+        cameramanRestaurant.deliver();
+
+        ItalianRestaurant italianRestaurant = new ItalianRestaurant(new VeggiePizza());
+        italianRestaurant.deliver();
+    }
+}

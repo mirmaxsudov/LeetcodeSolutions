@@ -1,4 +1,4 @@
-package univer_lesson;
+package univer_lesson.qs;
 
 public class Task2 {
     public static void main(String[] args) {

@@ -1,0 +1,5 @@
+package univer_lesson.observer;
+
+public interface Observer {
+    void notification()
+}

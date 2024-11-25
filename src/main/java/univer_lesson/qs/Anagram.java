@@ -1,4 +1,4 @@
-package univer_lesson;
+package univer_lesson.qs;
 
 import java.util.List;
 

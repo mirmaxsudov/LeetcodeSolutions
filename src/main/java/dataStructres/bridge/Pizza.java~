@@ -1,0 +1,4 @@
+package dataStructres.bridge;
+
+public abstract class Pizza {
+}

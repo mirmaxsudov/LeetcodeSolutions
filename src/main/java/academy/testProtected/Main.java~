@@ -1,0 +1,19 @@
+package academy.testProtected;
+
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}
+
+class User {
+    public String name;
+    protected String email;
+    private String password;
+
+    
+}
+
+class Mentor extends User {
+
+}

@@ -1,0 +1,6 @@
+package univer_lesson.chainResponsibility;
+
+public class Main {
+    public static void main(String[] args) {
+    }
+}
