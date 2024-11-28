@@ -7,6 +7,6 @@ public class Main {
         QuickSort quickSort = new QuickSort();
         quickSort.quickSort(array);
 
-
+        
     }
 }
