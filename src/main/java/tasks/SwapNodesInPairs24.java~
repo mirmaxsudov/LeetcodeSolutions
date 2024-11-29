@@ -29,9 +29,9 @@ public class SwapNodesInPairs24 {
 
     private void swap(List<Integer> list) {
         for (int i = 0; i < list.size() - 1; i += 2) {
-            list.set(i, list.get(i) + list.get(i + 1));
-            list.set(i + 1, list.get(i) - list.get(i + 1));
-            list.set(i, list.get(i) - list.get(i + 1));
+            int t = list.get(i);
+            list.set(i, list.get(i + 1));
+            list.set(i + 1, t);
         }
     }
 
