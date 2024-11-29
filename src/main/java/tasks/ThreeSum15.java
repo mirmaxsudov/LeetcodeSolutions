@@ -25,7 +25,6 @@ public class ThreeSum15 {
 
             for (int j = i; j < nums.length - 1; j++) {
                 int leftVal = nums[left], rightVal = nums[right];
-
                 if (leftVal + rightVal + currentNumber == 0) {
 
                 }
