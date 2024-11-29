@@ -3,6 +3,7 @@ package tasks;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class SwapNodesInPairs24 {
     public static void main(String[] args) {
 
