@@ -1,11 +1,9 @@
 package univer_lesson.binarySearchTree;
 
-import org.w3c.dom.Node;
-
 public class MyNode {
     public int data;
-    public Node left;
-    public Node right;
+    public MyNode left;
+    public MyNode right;
 
     public MyNode(int data) {
         this.data = data;

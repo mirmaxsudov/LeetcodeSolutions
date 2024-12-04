@@ -28,7 +28,7 @@ public class Task2 {
     }
 
     private static int solution(int n, int target, int[] array) {
-//        5 2  -> 2
+//        5 2 -> 2
 //        5 4 3 2 1
 
 //        6 3  -> 1

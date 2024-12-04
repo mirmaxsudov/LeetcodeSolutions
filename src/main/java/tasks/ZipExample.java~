@@ -13,7 +13,8 @@ public class ZipExample {
         try {
             zipDirectory("C:\\Abdurahmon\\G19 face\\10-modul",
                     "C:\\Abdurahmon\\G19 face\\10-modul.zip");
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
