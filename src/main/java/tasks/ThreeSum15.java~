@@ -26,17 +26,7 @@ public class ThreeSum15 {
             for (int j = i; j < nums.length - 1; j++) {
                 int leftVal = nums[left], rightVal = nums[right];
 
-                int sum = currentNumber + leftVal + rightVal;
-
-                if (sum == 0) {
-                    res.add(Arrays.asList(currentNumber, leftVal, rightVal));
-                    left++;
-                    right--;
-                } else if (sum < 0) {
-                    left++;
-                } else {
-                    right--;
-                }
+                
             }
         }
 
