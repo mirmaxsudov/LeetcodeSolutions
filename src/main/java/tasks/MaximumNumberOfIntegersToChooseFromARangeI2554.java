@@ -12,38 +12,25 @@ public class MaximumNumberOfIntegersToChooseFromARangeI2554 {
     }
 
     public static int maxCount(int[] banned, int n, int maxSum) {
-        Arrays.sort(banned);
 
-        Set<Integer> st = new HashSet<>();
+        Map<Integer, Boolean> mp = new HashMap<>();
 
-        for (int j : banned) st.add(j);
+        for (int num : banned)
+            mp.put(num, true);
 
-        Set<Integer> fully = new HashSet<>();
+        int total = 0;
+        int count = 0;
 
-        for (int i = 1; i <= n; i++)
-            fully.add(i);
+        for (int i = 1; i <= Math.min(n, maxSum); i++) {
+            if (!mp.getOrDefault(i, false)) {
+                total += i;
+                count++;
+            }
 
-        fully.removeAll(st);
-
-        List<Integer> list = new ArrayList<>(fully.stream().toList());
-
-        if (maxSum <= n)
-            list.removeIf(num -> num > maxSum);
-
-        int sum = list.stream().reduce(0, Integer::sum);
-
-        if (sum <= maxSum)
-            return list.size();
-
-        int right = list.size() - 1;
-
-        while (sum > maxSum) {
-            if (right == 0)
-                return 0;
-
-            sum -= list.get(right--);
+            if (total > maxSum)
+                return count - 1;
         }
 
-        return right + 1;
+        return count;
     }
 }
