@@ -1,0 +1,16 @@
+package tasks;
+
+public class ConvertDateToBinary3280 {
+    public static void main(String[] args) {
+
+    }
+
+    public static String convertDateToBinary(String date) {
+        StringBuilder sb = new StringBuilder();
+
+        String[] values = date.split("-");
+        
+
+        return sb.toString();
+    }
+}
