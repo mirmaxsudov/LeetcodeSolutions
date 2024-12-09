@@ -1,0 +1,18 @@
+package tasks;
+
+import java.util.Stack;
+
+public class BasicCalculator224 {
+    public static void main(String[] args) {
+
+    }
+
+    public static int calculate(String s) {
+        int result = 0;
+
+        Stack<Integer> stack = new Stack<>();
+        
+
+        return result;
+    }
+}

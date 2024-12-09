@@ -1,8 +1,6 @@
 package tasks;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ThreeSum15 {
     public static void main(String[] args) {
@@ -14,34 +12,30 @@ public class ThreeSum15 {
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
 
-        List<List<Integer>> res = new ArrayList<>();
+        Set<List<Integer>> res = new HashSet<>();
 
         int len = nums.length;
 
         for (int i = 0; i < nums.length; i++) {
-            int currentNumber = nums[i];
-
             int left = i + 1, right = len - 1;
 
-            for (int j = i; j < nums.length - 1; j++) {
-                int leftVal = nums[left], rightVal = nums[right];
+            int currentNumber = nums[i];
 
-                int sum = currentNumber + leftVal + rightVal;
-
-                if (sum == 0) {
-                    res.add(Arrays.asList(currentNumber, leftVal, rightVal));
+            while (left < right) {
+                if (nums[left] + nums[right] + currentNumber == 0) {
+                    res.add(Arrays.asList(currentNumber, nums[left], nums[right]));
                     left++;
                     right--;
-                } else if (sum < 0) {
-                    left++;
                 } else {
-                    right--;
+                    if (nums[left] + nums[right] + currentNumber < 0) {
+                        left++;
+                    } else {
+                        right--;
+                    }
                 }
             }
         }
 
-        return res.stream()
-                .distinct()
-                .toList();
+        return res.stream().toList();
     }
 }
