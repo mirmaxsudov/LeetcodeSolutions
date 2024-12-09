@@ -1,0 +1,9 @@
+package tasks;
+
+public class PercentageOfLetterInString2278 {
+    public static void main(String[] args) {
+
+    }
+
+    
+}
