@@ -1,0 +1,37 @@
+package tasks;
+
+import java.util.Arrays;
+
+public class DuplicateZeros1089 {
+    public static void main(String[] args) {
+        int[] ints = {1, 0, 2, 3, 0, 4, 5, 0};
+        duplicateZeros(ints);
+
+        System.out.println("ints = " + Arrays.toString(ints));
+    }
+
+    public static void duplicateZeros(int[] arr) {
+        int[] temp = new int[arr.length];
+
+        int tempIndex = 0;
+
+        for (int num : arr) {
+            if (num == 0) {
+                temp[tempIndex++] = 0;
+                temp[tempIndex++] = 0;
+            } else {
+                if (tempIndex == arr.length)
+                    break;
+
+                temp[tempIndex++] = num;
+            }
+        }
+
+        tempIndex = 0;
+
+        for (int num : temp)
+            arr[tempIndex++] = num;
+
+        System.out.println("arr = " + Arrays.toString(arr));
+    }
+}
