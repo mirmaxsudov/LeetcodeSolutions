@@ -21,7 +21,7 @@ public class SeparateTheDigitsInAnArray2553 {
 
             // 1314
 
-            while (num > substr) {
+            while (num > 0) {
                 helper[index++] = num % (substr * 10) / substr;
                 substr *= 10;
                 nLen++;
