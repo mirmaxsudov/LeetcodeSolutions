@@ -1,0 +1,11 @@
+package tasks;
+
+public class NumberOfChangingKeys3019 {
+    public static void main(String[] args) {
+
+    }
+
+    public int countKeyChanges(String s) {
+        
+    }
+}

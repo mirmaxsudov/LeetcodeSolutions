@@ -1,0 +1,9 @@
+package tasks;
+
+public class DifferenceBetweenElementSumAndDigitSumOfAnArray2535 {
+    public static void main(String[] args) {
+
+    }
+
+    
+}
