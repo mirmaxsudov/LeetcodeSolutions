@@ -9,15 +9,13 @@ public class Main {
         treeList.insert(10);
         treeList.insert(11);
         treeList.insert(12);
-        treeList.insert(15);
         treeList.insert(13);
-        treeList.insert(14);
 
         System.out.println(treeList);
 
         System.out.println(treeList.size());
 
-        treeList.delete(12);
+        treeList.delete(11);
 
         System.out.println(treeList);
 

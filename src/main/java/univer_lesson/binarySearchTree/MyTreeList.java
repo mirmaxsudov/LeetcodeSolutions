@@ -22,50 +22,81 @@ public class MyTreeList {
         return this.size;
     }
 
-    public void insert(int data) {
-        if (this.root == null) {
-            this.root = new MyNode(data);
-            return;
-        }
-
-        MyNode temp = this.root;
-        insertNode(temp, data);
+    public void delete(int data) {
+        this.root = delete(root, data);
     }
 
-    private void insertNode(MyNode temp, int data) {
-        if (temp == null) {
-            temp = new MyNode(data);
-            this.size++;
-            return;
-        }
+    private MyNode delete(MyNode root, int data) {
+        if (root == null)
+            return null;
 
-        if (temp.data == data)
-            return;
-
-        if (temp.data > data) {
-            insertNode(temp.left, data);
+        if (data > root.data) {
+            root.right = delete(root.right, data);
+        } else if (data < root.data) {
+            root.left = delete(root.left, data);
         } else {
-            insertNode(temp.right, data);
+            if (root.left == null) {
+                this.size--;
+                return root.right;
+            } else if (root.right == null) {
+                this.size--;
+                return root.left;
+            } else {
+                MyNode minNode = findMin(root.right);
+                root.data = minNode.data;
+                root.right = delete(root.right, minNode.data);
+            }
+        }
+        return root;
+    }
+
+    public void insert(int value) {
+        if (root == null) {
+            root = new MyNode(value);
+            size++;
+            return;
+        }
+
+        MyNode node = root;
+        while (true) {
+            if (value < node.data) {
+                if (node.left == null) {
+                    node.left = new MyNode(value);
+                    size++;
+                    return;
+                }
+                node = node.left;
+            } else {
+                if (node.right == null) {
+                    node.right = new MyNode(value);
+                    size++;
+                    return;
+                }
+                node = node.right;
+            }
         }
     }
 
-    public List<Integer> getAll() {
-        List<Integer> values = new ArrayList<>();
+    public MyNode findMin(MyNode node) {
+        while (node.left != null)
+            node = node.left;
 
-        MyNode temp = this.root;
-
-        takeAll(values, temp);
-
-        return values;
+        return node;
     }
 
-    private void takeAll(List<Integer> values, MyNode temp) {
-        if (temp == null)
+    @Override
+    public String toString() {
+        List<Integer> list = new ArrayList<>();
+        inOrder(list, root);
+        return list.toString();
+    }
+
+    private void inOrder(List<Integer> list, MyNode root) {
+        if (root == null)
             return;
 
-        values.add(temp.data);
-
-        takeAll(values, temp.left);
-        takeAll(values, temp.right);
+        inOrder(list, root.left);
+        list.add(root.data);
+        inOrder(list, root.right);
     }
 }
