@@ -1,0 +1,47 @@
+package tasks;
+
+public class FindMinimumInRotatedSortedArray153 {
+    public static void main(String[] args) {
+//        System.out.println(findMin2(new int[]{5, 1, 2, 3, 4}));
+//        System.out.println(findMin2(new int[]{3, 1, 2}));
+        System.out.println(findMin2(new int[]{2, 3, 4, 5, 1}));
+    }
+
+    public static int findMin2(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        if (nums[left] < nums[right - 1])
+            return nums[left];
+
+        while (left < right) {
+            int middle = (left + right) / 2;
+
+            int mid = nums[middle];
+
+            if (middle > 0 && mid < nums[middle - 1])
+                return mid;
+
+            if (middle < nums.length - 1 && mid > nums[middle + 1])
+                return nums[middle + 1];
+
+            if (mid > nums[right]) {
+                left = middle + 1;
+            } else {
+                right = middle;
+            }
+        }
+
+        return nums[left];
+    }
+
+    public static int findMin(int[] nums) {
+        int f = nums[0];
+
+        for (int i = 1; i < nums.length; i++)
+            if (f > nums[i])
+                return nums[i];
+
+        return f;
+    }
+}
