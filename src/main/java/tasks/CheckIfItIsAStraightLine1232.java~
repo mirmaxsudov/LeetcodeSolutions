@@ -1,0 +1,9 @@
+package tasks;
+
+public class CheckIfItIsAStraightLine1232 {
+    public static void main(String[] args) {
+
+    }
+
+    
+}
