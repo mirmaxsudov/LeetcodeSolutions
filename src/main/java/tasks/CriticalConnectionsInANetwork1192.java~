@@ -1,0 +1,24 @@
+package tasks;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CriticalConnectionsInANetwork1192 {
+    public static void main(String[] args) {
+
+    }
+
+    public static List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        for (List<Integer> connection : connections) {
+
+        }
+
+        return res;
+    }
+}

@@ -1,0 +1,27 @@
+package tasks;
+
+public class FinalArrayStateAfterKMultiplicationOperationsI3264 {
+    public static void main(String[] args) {
+
+    }
+
+    public static int[] getFinalState(int[] nums, int k, int multiplier) {
+
+        for (int i = 0; i < nums.length; i++) {
+            int min = nums[i];
+            int index = i;
+
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < min) {
+                    min = nums[j];
+                    index = j;
+                }
+            }
+
+            nums[index] = nums[index] * multiplier;
+            nums[i] = min * multiplier;
+        }
+
+        return nums;
+    }
+}
