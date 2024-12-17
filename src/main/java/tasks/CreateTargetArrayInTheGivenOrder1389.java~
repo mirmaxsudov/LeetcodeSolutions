@@ -1,0 +1,68 @@
+package tasks;
+
+import java.util.*;
+
+@SuppressWarnings("all")
+public class CreateTargetArrayInTheGivenOrder1389 {
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(createTargetArray(
+                new int[]{0, 1, 2, 3, 4},
+                new int[]{0, 1, 2, 2, 1}
+        )) + " - " + "0,4,1,3,2");
+    }
+
+    public static int[] createTargetArray(int[] nums, int[] index) {
+        int len = index.length;
+
+        List<Pair> pairs = new ArrayList<>();
+
+        for (int i = 0; i < len; i++) {
+            pairs.add(new Pair(index[i], nums[i]));
+        }
+
+        Collections.sort(pairs);
+
+        int[] res = new int[len];
+
+        Arrays.fill(res, -1);
+
+//  value    0 1 2 3 4
+//  index    0 1 2 2 1
+
+//  value    0 1 2 3 4
+//  index    0 1 2 2 1
+
+        return nums;
+    }
+
+    public static Pair getPair(List<Pair> pairs, int index) {
+        for (Pair pair : pairs)
+            if (pair.index == index)
+                return pair;
+
+        return null;
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int index;
+        int value;
+
+        public Pair(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair{" +
+                    "index=" + index +
+                    ", value=" + value +
+                    '}';
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            return this.index - o.index;
+        }
+    }
+}

@@ -1,11 +1,11 @@
 package tasks;
 
-import java.util.Arrays;
 
 public class ContinuousSubarrays2762 {
     public static void main(String[] args) {
-        System.out.println(continuousSubArrays(new int[]{5, 4, 2, 4}));
-        System.out.println(continuousSubArrays(new int[]{1, 2, 3}));
+        int num = 10;
+
+        System.out.println(num >>> 1);
     }
 
     public static long continuousSubArrays(int[] nums) {
