@@ -6,21 +6,17 @@ public class Main {
 
         System.out.println(treeList.size());
 
-        treeList.insert(10);
-        treeList.insert(11);
         treeList.insert(12);
         treeList.insert(15);
         treeList.insert(13);
+        treeList.insert(10);
+        treeList.insert(11);
         treeList.insert(14);
 
         System.out.println(treeList);
 
-        System.out.println(treeList.size());
-
-        treeList.delete(12);
+        System.out.println(treeList.deleteWithIterativeWay(13));
 
         System.out.println(treeList);
-
-        System.out.println(treeList.size());
     }
 }

@@ -10,11 +10,6 @@ public class MyTreeList {
     private MyNode root;
     private int size;
 
-    public MyTreeList(int data) {
-        root = new MyNode(data);
-        this.size++;
-    }
-
     public MyTreeList() {
     }
 
@@ -26,31 +21,82 @@ public class MyTreeList {
         this.root = delete(root, data);
     }
 
-    private MyNode delete(MyNode root, int data) {
-        if (root == null) {
-            return null;
+    public boolean deleteWithIterativeWay(int data) {
+        if (root == null)
+            return false;
+
+        MyNode temp = this.root;
+
+        while (true) {
+            if (data > temp.data) {
+                temp = temp.right;
+            } else if (data < temp.data) {
+                temp = temp.left;
+            } else {
+                if (temp.left == null) {
+                    temp.right = null;
+                    size--;
+                    return true;
+                } else if (temp.right == null) {
+                    temp.left = null;
+                    size--;
+                    return true;
+                } else {
+//                    MyNode minNode = findMin(temp.right);
+//                    temp.data = minNode.data;
+//                    temp.right = delete(temp.right, minNode.data);
+
+                    MyNode leftMaxNode = findLeftMax(temp.left, data);
+                    MyNode rightMinNode = findRightMin(temp.right, data);
+                }
+            }
         }
+    }
+
+    private MyNode findRightMin(MyNode node, int data) {
+        if (node == null)
+            return null;
+
+        if (node.data < data) {
+            return findRightMin(node.right, data);
+        } else {
+            return findRightMin(node.left, data);
+        }
+    }
+
+    private MyNode findLeftMax(MyNode node, int data) {
+        if (node == null)
+            return null;
+
+        if (node.data > data) {
+            return findLeftMax(node.left, data);
+        } else {
+            return findLeftMax(node.right, data);
+        }
+    }
+
+    private MyNode delete(MyNode root, int data) {
+        if (root == null)
+            return null;
 
         if (data > root.data) {
             root.right = delete(root.right, data);
         } else if (data < root.data) {
             root.left = delete(root.left, data);
         } else {
-            // Node to be deleted found
             if (root.left == null) {
                 this.size--;
-                return root.right; // Replace with right child
+                return root.right;
             } else if (root.right == null) {
                 this.size--;
-                return root.left; // Replace with left child
+                return root.left;
             } else {
-                // Node with two children
                 MyNode minNode = findMin(root.right);
-                root.data = minNode.data; // Replace data with inorder successor
-                root.right = delete(root.right, minNode.data); // Delete the inorder successor
+                root.data = minNode.data;
+                root.right = delete(root.right, minNode.data);
             }
         }
-        return root; // Return the modified root
+        return root;
     }
 
     public void insert(int value) {
@@ -61,6 +107,7 @@ public class MyTreeList {
         }
 
         MyNode node = root;
+
         while (true) {
             if (value < node.data) {
                 if (node.left == null) {
@@ -80,11 +127,23 @@ public class MyTreeList {
         }
     }
 
-    public MyNode findMin(MyNode node) {
+    private MyNode findMin(MyNode node) {
         while (node.left != null)
             node = node.left;
 
         return node;
+    }
+
+    public int findSize() {
+        MyNode temp = this.root;
+        return findSize(temp);
+    }
+
+    private int findSize(MyNode node) {
+        if (node == null)
+            return 0;
+
+        return 1 + findSize(node.left) + findSize(node.right);
     }
 
     @Override
