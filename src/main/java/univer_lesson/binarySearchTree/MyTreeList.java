@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 @Getter
 public class MyTreeList {
@@ -11,6 +12,23 @@ public class MyTreeList {
     private int size;
 
     public MyTreeList() {
+    }
+
+    public void inOrderWithIterative() {
+        MyNode cr = this.root;
+        Stack<MyNode> stack = new Stack<>();
+
+        while (cr != null || !stack.isEmpty()) {
+            while (cr != null) {
+                stack.push(cr);
+                cr = cr.left;
+            }
+
+            cr = stack.pop();
+            System.out.println("stack = " + cr.data);
+            System.out.print(cr.data + " | ");
+            cr = cr.right;
+        }
     }
 
     public int size() {
@@ -28,7 +46,6 @@ public class MyTreeList {
         MyNode parent = null;
         MyNode current = root;
 
-        // Find the node to delete
         while (current != null && current.data != data) {
             parent = current;
             if (data < current.data) {
@@ -38,12 +55,9 @@ public class MyTreeList {
             }
         }
 
-        // If the node is not found
-        if (current == null) {
+        if (current == null)
             return false;
-        }
 
-        // Case 1: Node with no children (leaf node)
         if (current.left == null && current.right == null) {
             if (current == root) {
                 root = null;
@@ -52,9 +66,7 @@ public class MyTreeList {
             } else {
                 parent.right = null;
             }
-        }
-        // Case 2: Node with only one child
-        else if (current.left == null || current.right == null) {
+        } else if (current.left == null || current.right == null) {
             MyNode child = (current.left != null) ? current.left : current.right;
 
             if (current == root) {
@@ -64,10 +76,7 @@ public class MyTreeList {
             } else {
                 parent.right = child;
             }
-        }
-        // Case 3: Node with two children
-        else {
-            // Find the in-order successor (smallest node in the right subtree)
+        } else {
             MyNode successorParent = current;
             MyNode successor = current.right;
 
@@ -76,10 +85,8 @@ public class MyTreeList {
                 successor = successor.left;
             }
 
-            // Replace the current node's value with the successor's value
             current.data = successor.data;
 
-            // Remove the successor node
             if (successorParent.left == successor) {
                 successorParent.left = successor.right;
             } else {
@@ -89,29 +96,6 @@ public class MyTreeList {
 
         size--;
         return true;
-    }
-
-
-    private MyNode findRightMin(MyNode node, int data) {
-        if (node == null)
-            return null;
-
-        if (node.data < data) {
-            return findRightMin(node.right, data);
-        } else {
-            return findRightMin(node.left, data);
-        }
-    }
-
-    private MyNode findLeftMax(MyNode node, int data) {
-        if (node == null)
-            return null;
-
-        if (node.data > data) {
-            return findLeftMax(node.left, data);
-        } else {
-            return findLeftMax(node.right, data);
-        }
     }
 
     private MyNode delete(MyNode root, int data) {
@@ -178,11 +162,53 @@ public class MyTreeList {
         return findSize(temp);
     }
 
-    private int findSize(MyNode node) {
+    public int findSize(MyNode node) {
         if (node == null)
             return 0;
 
-        return 1 + findSize(node.left) + findSize(node.right);
+        return findSize(node.left) + 1 + findSize(node.right);
+    }
+
+    public void inOrderPrint() {
+        inOrderPrint(this.root);
+        System.out.println();
+    }
+
+    private void inOrderPrint(MyNode root) {
+        if (root == null)
+            return;
+
+        inOrderPrint(root.left);
+        System.out.print(root.data + " | ");
+        inOrderPrint(root.right);
+    }
+
+    public void preOrderPrint() {
+        preOrderPrint(this.root);
+        System.out.println();
+    }
+
+    private void preOrderPrint(MyNode root) {
+        if (root == null)
+            return;
+
+        System.out.print(root.data + " | ");
+        preOrderPrint(root.left);
+        preOrderPrint(root.right);
+    }
+
+    public void postOrderPrint() {
+        postOrderPrint(this.root);
+        System.out.println();
+    }
+
+    private void postOrderPrint(MyNode root) {
+        if (root == null)
+            return;
+
+        postOrderPrint(root.left);
+        postOrderPrint(root.right);
+        System.out.print(root.data + " | ");
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Main {
         treeList.insert(11);
         treeList.insert(14);
 
-        treeList.inOrderWithIterative();
+        treeList.preOrderPrint();
 //        treeList.inOrderPrint();
 //        treeList.inOrderWithIterative();
     }
