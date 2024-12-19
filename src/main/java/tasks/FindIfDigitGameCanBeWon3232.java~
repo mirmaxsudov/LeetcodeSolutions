@@ -1,0 +1,9 @@
+package tasks;
+
+public class FindIfDigitGameCanBeWon3232 {
+    public static void main(String[] args) {
+
+    }
+
+    
+}
