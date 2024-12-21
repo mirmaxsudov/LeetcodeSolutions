@@ -5,7 +5,7 @@ public class CircularSentence2490 {
 //        System.out.println('L' - 'l');
 //        System.out.println(isCircularSentence("leetcode exercises sound delightful") + " - " + "True");
 //        System.out.println(isCircularSentence("wZJxUaNCVwUkWNGBQLzIIJDStzQIxLudYjejWimXWvoRJFnKFSiGynt tQywgnOIcpQRyaCGadbpNlVJZTikOukEyhFhWuEPPiBqGQTfHwUoBRGtHaNCRZpNpQaNoFZmBwzjyKCSzXxkNlyLdqOIeMCbPkCWMcjwTwkSbsmLasZyImimdnOTJTZjVIsox xQhIuBvGcXPXzLtwlFaSdVrdvnifyiWVFURLRgMUgXCmoUcsVAuUgmbiPyfnVywNeIbJPQlxWLjlVxvxzOpwqnqbMUQKXWTtA AVAPHRRXGUQqjIPKYlHCIZhcMLGOdCwDTeDIgFzZIX Xeou uOUhQbaueDrmpDdTEKImvPiugumCtBGHWfLAufLhhJgRCmVbw") + " - " + "True");
-        System.out.println(isCircularSentence("IuTiUtGGsNydmacGduehPPGksKQyT TmOraUbCcQdnZUCpGCYtGp p pG GCcRvZDRawqGKOiBSLwjIDOjdhnHiisfddYoeHqxOqkUvOEyI") + " - " + "True");
+//        System.out.println(isCircularSentence("IuTiUtGGsNydmacGduehPPGksKQyT TmOraUbCcQdnZUCpGCYtGp p pG GCcRvZDRawqGKOiBSLwjIDOjdhnHiisfddYoeHqxOqkUvOEyI") + " - " + "True");
     }
 
     public static boolean isCircularSentence(String sentence) {

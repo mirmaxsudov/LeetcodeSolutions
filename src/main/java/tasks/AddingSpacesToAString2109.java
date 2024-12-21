@@ -5,6 +5,15 @@ public class AddingSpacesToAString2109 {
         System.out.println(addSpaces2("LeetcodeHelpsMeLearn", new int[]{8, 13, 15}));
     }
 
+    public static String addSpaceV3(String s, int[] spaces) {
+        StringBuilder sb = new StringBuilder(s);
+
+        for (int space : spaces)
+            sb.insert(space, " ");
+
+        return sb.toString();
+    }
+
     public static String addSpaces2(String s, int[] spaces) {
         char[] chars = new char[s.length() + spaces.length];
 
