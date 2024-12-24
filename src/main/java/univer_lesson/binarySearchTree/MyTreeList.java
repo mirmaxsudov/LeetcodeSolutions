@@ -2,9 +2,7 @@ package univer_lesson.binarySearchTree;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 @Getter
 public class MyTreeList {
@@ -12,6 +10,42 @@ public class MyTreeList {
     private int size;
 
     public MyTreeList() {
+    }
+
+    public void preOrderWithIterative() {
+        Queue<MyNode> nodes = new PriorityQueue<>();
+
+        System.out.println();
+    }
+
+    public void levelOrderWithIterative() {
+        if (root == null)
+            return;
+
+        List<MyNode> nodes = new ArrayList<>();
+
+        MyNode temp = root;
+        nodes.add(temp);
+
+        while (!nodes.isEmpty()) {
+            List<MyNode> helpers = new ArrayList<>();
+
+            for (MyNode node : nodes) {
+                if (node.left != null)
+                    helpers.add(node.left);
+
+                if (node.right != null)
+                    helpers.add(node.right);
+            }
+
+            System.out.print(" ".repeat(helpers.size()));
+
+            for (MyNode node : nodes)
+                System.out.print(node.data + " | ");
+
+            System.out.println();
+            nodes = helpers;
+        }
     }
 
     public void inOrderWithIterative() {
@@ -25,7 +59,6 @@ public class MyTreeList {
             }
 
             cr = stack.pop();
-            System.out.println("stack = " + cr.data);
             System.out.print(cr.data + " | ");
             cr = cr.right;
         }
@@ -129,23 +162,25 @@ public class MyTreeList {
             return;
         }
 
-        MyNode node = root;
+        MyNode current = root;
 
         while (true) {
-            if (value < node.data) {
-                if (node.left == null) {
-                    node.left = new MyNode(value);
+            if (value < current.data) {
+                if (current.left == null) {
+                    current.left = new MyNode(value);
                     size++;
                     return;
                 }
-                node = node.left;
+                current = current.left;
+            } else if (value > current.data) { // Avoid duplicates
+                if (current.right == null) {
+                    current.right = new MyNode(value);
+                    size++;
+                    return;
+                }
+                current = current.right;
             } else {
-                if (node.right == null) {
-                    node.right = new MyNode(value);
-                    size++;
-                    return;
-                }
-                node = node.right;
+                return;
             }
         }
     }
