@@ -1,7 +1,9 @@
 package tasks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FindLargestValueInEachTreeRow515 {
     public static void main(String[] args) {
@@ -11,7 +13,35 @@ public class FindLargestValueInEachTreeRow515 {
                 new TreeNode(2, null, new TreeNode(9))
         );
 
-        System.out.println(largestValues(tree));
+        System.out.println(largestValues2(tree));
+    }
+
+    public static List<Integer> largestValues2(TreeNode root) {
+        Map<Integer, Integer> mp = new HashMap<>();
+
+        List<Integer> res = new ArrayList<>();
+
+        taker(root, 0, mp);
+
+        for (Map.Entry<Integer, Integer> en : mp.entrySet())
+            res.add(en.getValue());
+
+        return res;
+    }
+
+    private static void taker(TreeNode root, int level, Map<Integer, Integer> mp) {
+        if (root == null)
+            return;
+
+        int lT = mp.getOrDefault(level, Integer.MIN_VALUE);
+
+        if (lT == -1)
+            mp.put(level, root.val);
+
+        mp.put(level, Math.max(root.val, lT));
+
+        taker(root.left, level + 1, mp);
+        taker(root.right, level + 1, mp);
     }
 
     public static List<Integer> largestValues(TreeNode root) {
