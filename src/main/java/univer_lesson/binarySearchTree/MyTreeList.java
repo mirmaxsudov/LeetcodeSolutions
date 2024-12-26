@@ -12,12 +12,6 @@ public class MyTreeList {
     public MyTreeList() {
     }
 
-    public void preOrderWithIterative() {
-        Queue<MyNode> nodes = new PriorityQueue<>();
-
-        System.out.println();
-    }
-
     public void levelOrderWithIterative() {
         if (root == null)
             return;
@@ -62,6 +56,10 @@ public class MyTreeList {
             System.out.print(cr.data + " | ");
             cr = cr.right;
         }
+    }
+
+    public void postOrder() {
+
     }
 
     public int size() {
