@@ -50,11 +50,11 @@ public class Task1 {
         }
 
         int deletions = 0;
-        for (int i = 0; i < N; i++) {
-            if (!E.contains(A[i])) {
+
+        for (int i = 0; i < N; i++)
+            if (!E.contains(A[i]))
                 deletions++;
-            }
-        }
+
         return deletions;
     }
 }
