@@ -90,14 +90,6 @@ public class BinaryHeapTree {
         return this.size;
     }
 
-    public int getMax() {
-        return array[0];
-    }
-
-    public int getMin() {
-        return array[size - 1];
-    }
-
     @Override
     public String toString() {
         return "BinaryHeapTree{" +
