@@ -1,11 +1,32 @@
 package tasks;
 
-import java.util.Arrays;
+import java.util.Stack;
 
 public class ClearDigits3174 {
     public static void main(String[] args) {
         System.out.println(clearDigits("abc"));
         System.out.println(clearDigits("cb34"));
+    }
+
+    public static String clearDigits2(String s) {
+        Stack<Character> st = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                if (st.empty())
+                    continue;
+
+                st.pop();
+            } else
+                st.push(ch);
+        }
+
+        char[] res = new char[st.size()];
+
+        for (int i = 0; i < st.size(); i++)
+            res[i] = st.get(i);
+
+        return new String(res);
     }
 
     public static String clearDigits(String s) {
