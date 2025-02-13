@@ -98,10 +98,10 @@ public class BinaryHeapTree {
         return array[size - 1];
     }
 
-    @Override
-    public String toString() {
-        return "BinaryHeapTree{" +
-                "array=" + Arrays.toString(array) +
-                '}';
-    }
+        @Override
+        public String toString() {
+            return "BinaryHeapTree{" +
+                    "array=" + Arrays.toString(array) +
+                    '}';
+        }
 }
