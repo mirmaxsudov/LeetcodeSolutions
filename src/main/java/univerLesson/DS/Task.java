@@ -10,9 +10,7 @@ public class Task {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (i == j || ((j - i) == Math.abs(m - n))) {
-                    matrix[i][j] = true;
-                } else if (i + j == m - 1 || i + j == n - 1) {
+                if ((i == j || ((j - i) == Math.abs(m - n))) || (i + j == n - 1 || i + j == m - 1)) {
                     matrix[i][j] = true;
                 }
             }
