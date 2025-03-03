@@ -9,13 +9,11 @@ public class TransformArrayByParity3467 {
         int[] res = new int[nums.length];
         int l = 0, r = nums.length - 1;
 
-        for (int num : nums) {
-            if (num % 2 == 0) {
+        for (int num : nums)
+            if (num % 2 == 0)
                 res[l++] = 0;
-            } else {
+            else
                 res[r--] = 1;
-            }
-        }
 
         return res;
     }
