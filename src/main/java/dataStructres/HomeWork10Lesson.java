@@ -7,5 +7,6 @@ public class HomeWork10Lesson {
     }
 
     private static void draw(int n) {
+
     }
 }
