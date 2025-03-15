@@ -7,7 +7,6 @@ public class AverageOfLevelsInBinaryTree637 {
 
     }
 
-
     private Map<Integer, List<Integer>> mp = new HashMap<>();
 
     public List<Double> averageOfLevels(TreeNode root) {
