@@ -1,24 +1,44 @@
 package tasks;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class AverageOfLevelsInBinaryTree637 {
     public static void main(String[] args) {
 
     }
 
-    private static final List<Double> averages = new LinkedList<>();
-    private static int level = 0;
-    public static List<Double> averageOfLevels(TreeNode root) {
+
+    private Map<Integer, List<Integer>> mp = new HashMap<>();
+
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> averages = new LinkedList<>();
+
+        dfs(0, root);
+
+        for (Map.Entry<Integer, List<Integer>> entry : mp.entrySet()) {
+            List<Integer> list = entry.getValue();
+
+            double sum = 0;
+
+            for (int num : list)
+                sum += num;
+
+            averages.add(sum / list.size());
+        }
+
+        return averages;
+    }
+
+    public void dfs(int level, TreeNode root) {
         if (root == null)
-            return averages;
+            return;
 
-        level = 0;
+        if (!mp.containsKey(level))
+            mp.put(level, new ArrayList<>());
 
+        mp.get(level).add(root.val);
 
-
-
-        return null;
+        dfs(level + 1, root.left);
+        dfs(level + 1, root.right);
     }
 }
