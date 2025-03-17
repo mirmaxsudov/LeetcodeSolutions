@@ -21,11 +21,10 @@ public class TwoSumIVInputIsABST653 {
             if (sum == k)
                 return true;
 
-            if (sum > k) {
+            if (sum > k)
                 right--;
-            } else {
+            else
                 left++;
-            }
         }
 
         return false;

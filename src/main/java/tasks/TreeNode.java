@@ -1,5 +1,8 @@
 package tasks;
 
+import lombok.ToString;
+
+@ToString
 public class TreeNode {
     int val;
     TreeNode left;
