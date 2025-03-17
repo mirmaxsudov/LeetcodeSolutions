@@ -8,6 +8,24 @@ public class MinimumDistanceBetweenBSTNodes783 {
 
     }
 
+    private int min = Integer.MAX_VALUE;
+
+    public int minDiffInBSTVer2(TreeNode root) {
+        dfs(root.left, root.val);
+        dfs(root.right, root.val);
+
+        return min;
+    }
+
+    private void dfs(TreeNode root, int val) {
+        if (root == null)
+            return;
+
+        dfs(root.left, root.val);
+        min = Math.min(min, val - root.val);
+        dfs(root.right, root.val);
+    }
+
     private List<Integer> list = new ArrayList<>();
 
     public int minDiffInBST(TreeNode root) {
