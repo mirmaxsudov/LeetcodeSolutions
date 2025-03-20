@@ -10,7 +10,6 @@ public class FlattenAMultilevelDoublyLinkedList430 {
             flatten = flatten.next;
         }
 
-        System.out.print(flatten.val + " ");
 
         System.out.println();
         System.out.println();
@@ -110,7 +109,7 @@ public class FlattenAMultilevelDoublyLinkedList430 {
         }
 
         if (res == null || res.next == null)
-            return res == null ? res : res.next;
+            return null;
 
         res = res.next;
         res.prev = null;
