@@ -12,13 +12,13 @@ public class HomeWork4 {
 
         for (int i = 1; i < array.length; i++) {
             if (isIncrease) {
-                if (isIncrease && array[i - 1] > array[i]) {
+                if (array[i - 1] > array[i]) {
                     isIncrease = false;
                     isDecrease = true;
                     continue;
                 }
 
-                if (isDecrease || array[i - 1] >= array[i])
+                if (array[i - 1] >= array[i])
                     return false;
             } else {
                 if (array[i - 1] <= array[i])

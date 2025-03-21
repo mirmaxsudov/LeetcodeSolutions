@@ -4,9 +4,9 @@ import lombok.ToString;
 
 @ToString
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode() {
     }
@@ -23,5 +23,5 @@ public class TreeNode {
 
     public static void main(String[] args) {
         System.out.println((81) / (Math.sqrt(16 * 246)));
-     }
+    }
 }
