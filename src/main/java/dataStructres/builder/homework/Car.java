@@ -1,5 +1,10 @@
 package dataStructres.builder.homework;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class Car {
     private final String brand;
     private final String model;
@@ -11,32 +16,6 @@ public class Car {
         this.model = builder.getModel();
         this.year = builder.getYear();
         this.color = builder.getColor();
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", color='" + color + '\'' +
-                '}';
     }
 
     public interface CarBuilder {
