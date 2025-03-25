@@ -8,13 +8,14 @@ public class HomeWork4 {
 
     public static boolean task(int[] array) {
         boolean isIncrease = true;
-        boolean isDecrease = false;
 
         for (int i = 1; i < array.length; i++) {
             if (isIncrease) {
+                if (i == 1 && array[i - 1] > array[i])
+                    return false;
+
                 if (array[i - 1] > array[i]) {
                     isIncrease = false;
-                    isDecrease = true;
                     continue;
                 }
 
