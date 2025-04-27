@@ -6,11 +6,11 @@ public class MaximumSumWithExactlyKElements2656 {
     }
 
     public static int maximizeSum(int[] nums, int k) {
-        int max = 0;
+        int m = 0;
 
         for (int num : nums)
-            max = Math.max(num, max);
+            m = Math.max(m, num);
 
-        return max + k;
+        return m * k + (k * (k - 1) / 2);
     }
 }
