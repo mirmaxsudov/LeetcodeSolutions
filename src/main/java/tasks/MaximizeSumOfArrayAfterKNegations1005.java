@@ -12,25 +12,38 @@ public class MaximizeSumOfArrayAfterKNegations1005 {
     public static int largestSumAfterKNegations(int[] nums, int k) {
         Arrays.sort(nums);
 
-        int sum = 0;
-
-        for (int num : nums)
-            if (num > 0)
-                sum += num;
-
-        int i = 0;
-
-        while (k > 0) {
-            if (nums[i] >= 0)
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0)
                 break;
 
-            sum += (nums[i] * -1);
-            i++;
+            if (nums[i] == 0 || k == 0) {
+                k = 0;
+                break;
+            }
+
+            nums[i] *= -1;
             k--;
         }
 
-        if (nums[i] == 0)
-            return sum;
+        if (k != 0) {
+            int min = Integer.MAX_VALUE;
+            int index = -1;
+
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] < min) {
+                    min = nums[i];
+                    index = i;
+                }
+            }
+
+            if (k % 2 != 0)
+                nums[index] *= -1;
+        }
+
+        int sum = 0;
+
+        for (int num : nums)
+            sum += num;
 
         return sum;
     }
