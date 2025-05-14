@@ -1,36 +1,47 @@
 package tasks;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class FindWordsThatCanBeFormedByCharacters1160 {
     public static void main(String[] args) {
-        System.out.println();
+        String[] words = {"cat", "bt", "hat", "tree"};
+        String chars = "atach";
+
+        System.out.println(countCharacters(words, chars));
+
+        String[] words2 = {"hello", "world", "leetcode"};
+        String chars2 = "welldonehoneyr";
+
+        System.out.println(countCharacters(words2, chars2));
     }
 
     public static int countCharacters(String[] words, String chars) {
-        int c = 0;
+        int res = 0;
 
-        t:
+        Map<Character, Integer> mp = new HashMap<>();
+
+        for (char c : chars.toCharArray())
+            mp.put(c, mp.getOrDefault(c, 0) + 1);
+
+        int[] values = new int[28];
+
+        label:
         for (String word : words) {
-            int[] chs = new int[26];
+            Arrays.fill(values, 0);
+            for (char c : word.toCharArray()) {
+                int count = mp.getOrDefault(c, 0) - values[c - 'a'];
 
-            for (char c1 : word.toCharArray()) {
-                if (c1 - 'a' > 1)
-                    break t;
-                chs[c1 - 'a']++;
+                if (count <= 0)
+                    continue label;
+
+                values[c - 'a']++;
             }
 
-            int l = 0;
-
-            for (char c1 : chars.toCharArray()) {
-                if (chs[c1 - 'a'] == 1) {
-                    chs[c1 - 'a']--;
-                    l++;
-                }
-            }
-
-            if (l == word.length())
-                c += l;
+            res += word.length();
         }
 
-        return c;
+        return res;
     }
 }

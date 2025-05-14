@@ -103,17 +103,19 @@ public class DataMatrixGenerator {
     }
 
     private static GeneratedImage createImage(
-            String data, int id, int imageSize, int matrixSize) throws IOException {
+            String data,
+            int id,
+            int imageSize,
+            int matrixSize
+    ) throws IOException {
 
         Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
         hints.put(EncodeHintType.MARGIN, 0);
         BitMatrix bm = new DataMatrixWriter()
                 .encode(data, BarcodeFormat.DATA_MATRIX, matrixSize, matrixSize, hints);
 
-        // 2) Render to BufferedImage
         BufferedImage dm = MatrixToImageWriter.toBufferedImage(bm);
 
-        // 3) Compose on canvas
         BufferedImage canvas = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_BYTE_BINARY);
         Graphics2D g = canvas.createGraphics();
         g.setColor(Color.WHITE);
@@ -125,7 +127,6 @@ public class DataMatrixGenerator {
         g.drawImage(dm, x, 22, null);
         g.dispose();
 
-        // 4) Write PNG to byte[] with max compression
         ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
         try (ImageOutputStream ios = ImageIO.createImageOutputStream(baos)) {
             ImageWriter w = ImageIO.getImageWritersByFormatName("png").next();
