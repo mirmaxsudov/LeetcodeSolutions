@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Queue;
 
 public class M1 {
+    public static void main(String[] args) {
+        BinaryNumbers binaryNumbers = new BinaryNumbers();
+        System.out.println(binaryNumbers.generate(20));
+    }
     static class BinaryNumbers {
         public List<String> generate(int N) {
             List<String> res = new ArrayList<>();

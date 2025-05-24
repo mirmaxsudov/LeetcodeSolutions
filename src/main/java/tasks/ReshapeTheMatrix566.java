@@ -6,20 +6,18 @@ public class ReshapeTheMatrix566 {
     }
 
     public static int[][] matrixReshape(int[][] mat, int r, int c) {
+        if (mat.length * mat[0].length != r * c)
+            return mat;
+
         int[][] res = new int[r][c];
 
-        int ri = 0, rj = 0;
-
-        for (int[] array : mat) {
-            for (int num : array) {
-                res[ri][rj] = num;
-
-                if (rj + 1 == c) {
-                    rj = 0;
-                    ri++;
-                } else {
-                    rj++;
-                }
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                int num = mat[i][j];
+                int ri = i * mat[0].length + j;
+                int rj = ri % c;
+                int rii = ri / c;
+                res[rii][rj] = num;
             }
         }
 
