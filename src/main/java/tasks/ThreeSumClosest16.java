@@ -14,8 +14,8 @@ public class ThreeSumClosest16 {
     public static int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
 
-        int h = -1;
-        int prevDis = 0;
+        int h = Integer.MAX_VALUE;
+        int prevDis = nums[0] + nums[1] + nums[2];
 
         for (int i = 0; i < nums.length; i++) {
             int l = i + 1;
@@ -28,7 +28,7 @@ public class ThreeSumClosest16 {
                     return s;
 
                 if (Math.abs(target - h) > Math.abs(target - s))
-                    h = s;
+                    h = Math.min(h, s);
 
                 if (prevDis > Math.abs(s)) {
                     r--;
