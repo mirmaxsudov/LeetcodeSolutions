@@ -5,27 +5,22 @@ public class FlattenBinaryTreeToLinkedList114 {
 
     }
 
-    private TreeNode res = new TreeNode(-1);
-    private TreeNode current;
+    TreeNode c = new TreeNode(-1);
+    TreeNode h = c;
 
     public void flatten(TreeNode root) {
-        current = res;
-        inOrder(root);
-
-        root = res.right;
+        dfs(root);
+        root = c.right;
     }
 
-    private void inOrder(TreeNode root) {
+    private void dfs(TreeNode root) {
         if (root == null)
             return;
 
-        if (root.left == null && root.right == null) {
-            current.right = new TreeNode(root.val);
-            current = current.right;
-            return;
-        }
+        this.h.right = new TreeNode(root.val);
+        this.h = this.h.right;
 
-        inOrder(root.left);
-        inOrder(root.right);
+        dfs(root.left);
+        dfs(root.right);
     }
 }
