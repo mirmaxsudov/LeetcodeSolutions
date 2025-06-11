@@ -14,59 +14,53 @@ public class SpiralMatrixIV2326 {
 
     public static int[][] spiralMatrix(int n, int m, ListNode head) {
         int[][] res = new int[n][m];
+
         boolean[][] used = new boolean[n][m];
-        int c = 0;
-        int i = 0, j = 0;
-        // RIGHT(0), DOWN(1), LEFT(2), UP(3)
-        int direction = 0;
+        int i = 0, j = 0, c = 0;
+        int dir = 0;
 
-        while (c != (n * m)) {
+        while (c != n * m) {
+            int val = head == null ? -1 : head.val;
             used[i][j] = true;
-            int nextVal;
-
-            if (head != null) {
-                nextVal = head.val;
+            res[i][j] = val;
+            if (head != null)
                 head = head.next;
-            } else {
-                nextVal = -1;
-            }
 
-            switch (direction) {
-                case 0 -> {
-                    if (j + 1 < m && !used[i][j + 1]) {
-                        j++;
-                    } else {
-                        direction = 1;
-                        i++;
-                    }
-                }
-                case 1 -> {
-                    if (i + 1 < n && !used[i + 1][j]) {
-                        i++;
-                    } else {
-                        direction = 2;
-                        j--;
-                    }
-                }
+            switch (dir) {
                 case 2 -> {
-                    if (j - 1 >= 0 && !used[i][j - 1]) {
+                    if (j - 1 >= 0 && !used[i][j - 1])
                         j--;
-                    } else {
-                        direction = 3;
+                    else {
                         i--;
+                        dir++;
+                    }
+                }
+                case 0 -> {
+                    if (j + 1 < m && !used[i][j + 1])
+                        j++;
+                    else {
+                        i++;
+                        dir++;
                     }
                 }
                 case 3 -> {
-                    if (i - 1 >= 0 && !used[i - 1][j]) {
+                    if (i - 1 >= 0 && !used[i - 1][j])
                         i--;
-                    } else {
-                        direction = 0;
+                    else {
                         j++;
+                        dir = 0;
+                    }
+                }
+                case 1 -> {
+                    if (i + 1 < n && !used[i + 1][j])
+                        i++;
+                    else {
+                        j--;
+                        dir++;
                     }
                 }
             }
 
-            res[i][j] = nextVal;
             c++;
         }
 
