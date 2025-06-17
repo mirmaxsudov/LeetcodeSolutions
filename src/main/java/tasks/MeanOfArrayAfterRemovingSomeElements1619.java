@@ -10,11 +10,12 @@ public class MeanOfArrayAfterRemovingSomeElements1619 {
     public static double trimMean(int[] arr) {
         Arrays.sort(arr);
 
-        int s = 0, e = arr.length - 1;
-        int minC = 0, maxC = 0;
+        int skip = (arr.length * 5) / 100;
+        double sum = 0;
 
+        for (int i = skip; i < arr.length - skip; i++)
+            sum += arr[i];
 
-
-        return 1;
+        return sum / (arr.length - skip * 2);
     }
 }
