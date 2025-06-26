@@ -8,7 +8,7 @@ public class RowWithMaximumOnes2643 {
     public static int[] rowAndMaximumOnes(int[][] mat) {
         int max = 0;
         int pos = -1;
-        z
+
         int i = 0;
         for (int[] nums : mat) {
             int c = 0;
