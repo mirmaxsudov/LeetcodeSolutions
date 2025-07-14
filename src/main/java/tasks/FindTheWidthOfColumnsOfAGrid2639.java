@@ -12,15 +12,18 @@ public class FindTheWidthOfColumnsOfAGrid2639 {
     }
 
     public static int[] findColumnWidth(int[][] grid) {
-        int[] res = new int[grid.length];
+        int len = grid[0].length;
+        int[] res = new int[len];
 
-        for (int i = 0; i < grid.length; i++) {
+        for (int i = 0; i < len; i++) {
             int max = 0;
-
-            for (int[] nums : grid)
-                max = Math.max(max, findLen(nums[i]));
-
-            res[i] = max;
+            int l = 0;
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j] < 0)
+                    l++;
+                l += String.valueOf(grid[i][j]).length() - 1;
+            }
+            max = Math.max(max, l);
         }
 
         return res;
