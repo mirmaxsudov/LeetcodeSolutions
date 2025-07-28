@@ -15,10 +15,19 @@ public class ZigzagGridTraversalWithSkip3417 {
     public static List<Integer> zigzagTraversal(int[][] grid) {
         List<Integer> list = new ArrayList<>();
 
-        int i, j;
-        i = j = 0;
-        boolean isRight = true;
+        boolean isEven = true;
 
+        for (int[] array : grid) {
+            if (isEven) {
+                for (int i = 0; i < array.length; i += 2)
+                    list.add(array[i]);
+            } else {
+                for (int i = array.length - 2; i >= 0; i -= 2)
+                    list.add(array[i]);
+            }
+
+            isEven = !isEven;
+        }
 
         return list;
     }
