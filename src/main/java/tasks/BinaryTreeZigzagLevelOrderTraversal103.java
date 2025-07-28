@@ -10,43 +10,40 @@ public class BinaryTreeZigzagLevelOrderTraversal103 {
 
     }
 
-
     public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
-        list.add(List.of(root.val));
+        List<List<Integer>> res = new ArrayList<>();
 
-        List<TreeNode> roots = new ArrayList<>();
-        roots.add(root);
-        boolean isRight = false;
+        List<TreeNode> nodes = new ArrayList<>();
+        nodes.add(root);
+        var isRight = true;
 
-        while (!roots.isEmpty()) {
-            List<TreeNode> helper = new ArrayList<>();
-            List<Integer> vals = new ArrayList<>();
+        while (!nodes.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            if (isRight)
+                for (TreeNode node : nodes)
+                    list.add(node.val);
+            else
+                for (int i = nodes.size() - 1; i >= 0; i--)
+                    list.add(nodes.get(i).val);
 
-            if (isRight) {
-                for (TreeNode node : roots) {
-                    if (node.left != null)
-                        helper.add(node.left);
-                    if (node.right != null)
-                        helper.add(node.right);
-                    vals.add(node.val);
-                }
-            } else {
-                for (int i = roots.size() - 1; i >= 0; i--) {
-                    TreeNode node = roots.get(i);
-                    if (node.right != null)
-                        helper.add(node.right);
-                    if (node.left != null)
-                        helper.add(node.left);
-                    vals.add(node.val);
-                }
-            }
-            roots.clear();
-            roots = helper;
-            list.add(vals);
+            res.add(list);
             isRight = !isRight;
+
+            List<TreeNode> newNodes = new ArrayList<>();
+
+            int len = nodes.size();
+
+            for (TreeNode node : nodes) {
+                if (node.left != null)
+                    newNodes.add(node.left);
+                if (node.right != null)
+                    newNodes.add(node.right);
+            }
+
+            nodes.clear();
+            nodes = newNodes;
         }
 
-        return list;
+        return res;
     }
 }
