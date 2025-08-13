@@ -1,8 +1,0 @@
-package tasks;
-
-public class MaximumSumWithExactlyKElements2656 {
-    public static void main(String[] args) {
-
-    }
-    
-}

@@ -2,7 +2,6 @@ package tasks;
 
 public class TwoSumIIInputArrayIsSorted167 {
     public static void main(String[] args) {
-
     }
 
     public static int[] twoSum(int[] numbers, int target) {

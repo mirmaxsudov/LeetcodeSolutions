@@ -1,5 +1,7 @@
 package tasks;
 
+import dataStructres.spiralMatrix.SpiralMatrix;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,73 +16,61 @@ public class SpiralMatrix54 {
         ));
     }
 
-    private final static List<Integer> res = new ArrayList<>();
-
-    public static List<Integer> spiralOrder(int[][] matrix) {
-        boolean[][] used = new boolean[matrix.length][matrix[0].length];
-        generate(matrix, 0, 0, matrix.length - 1, matrix[0].length - 1, 1, 0, used);
-        return res;
+    enum Dir {
+        LEFT, RIGHT, TOP, BOTTOM;
     }
 
-    private static void generate(int[][] matrix, int i, int j, int sSize, int iSize, int dir, int count, boolean[][] used) {
-        if (count == matrix.length * matrix[0].length) return;
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new ArrayList<>();
 
-        switch (dir) {
-            // Top
-            case 0 -> {
-                if (i == 0) {
-                    generate(matrix, i, j + 1, sSize, iSize, 1, count, used);
-                } else {
-                    if (used[i][j]) {
-                        generate(matrix, i, j + 1, sSize, iSize, 1, count, used);
-                    } else {
-                        res.add(matrix[i - 1][j]);
-                        used[i - 1][j] = true;
-                        generate(matrix, i - 1, j, sSize, iSize, 0, count, used);
+        int i = 0, j = 0, usedCount = 0, n = matrix.length, m = matrix[0].length;
+        boolean[][] used = new boolean[n][m];
+        Dir dir = Dir.RIGHT;
+
+        // Dir => 0 = RIGHT, 1 = BOTTOM, 2 = LEFT and 3 = TOP;
+
+        while (usedCount != n * m) {
+            used[i][j] = true;
+            res.add(matrix[i][j]);
+
+            switch (dir) {
+                case LEFT -> {
+                    if (j - 1 >= 0 && !used[i][j - 1])
+                        j--;
+                    else {
+                        i--;
+                        dir = Dir.TOP;
+                    }
+                }
+                case RIGHT -> {
+                    if (j + 1 < m && !used[i][j + 1])
+                        j++;
+                    else {
+                        i++;
+                        dir = Dir.BOTTOM;
+                    }
+                }
+                case TOP -> {
+                    if (i - 1 >= 0 && !used[i - 1][j])
+                        i--;
+                    else {
+                        j++;
+                        dir = Dir.RIGHT;
+                    }
+                }
+                case BOTTOM -> {
+                    if (i + 1 < n && !used[i + 1][j])
+                        i++;
+                    else {
+                        j--;
+                        dir = Dir.LEFT;
                     }
                 }
             }
-            // Right
-            case 1 -> {
-                if (j == iSize) {
-                    res.add(matrix[i][j]);
-                    used[i][j] = true;
-                    count++;
-                    generate(matrix, i + 1, j, sSize, iSize, 2, count, used);
-                } else {
-                    res.add(matrix[i][j]);
-                    used[i][j] = true;
-                    count++;
-                    generate(matrix, i, j + 1, sSize, iSize, 1, count, used);
-                }
-            }
-            // Bottom
-            case 2 -> {
-                if (i - 1 == sSize) {
-                    generate(matrix, i, j + 1, sSize, iSize, 3, count, used);
-                } else {
-                    res.add(matrix[i][j]);
-                    used[i][j] = true;
-                    count++;
-                    generate(matrix, i + 1, j, sSize, iSize, 2, count, used);
-                }
-            }
-            // Left
-            case 3 -> {
-                if (i - 1 == sSize && j - 1 == iSize) {
-                    generate(matrix, i, j - 1, sSize, iSize, 3, count, used);
-                    return;
-                }
 
-                if (j == 0) {
-                    generate(matrix, i, j, sSize, iSize, 0, count, used);
-                } else {
-                    res.add(matrix[i - 1][j - 1]);
-                    used[i - 1][j - 1] = true;
-                    count++;
-                    generate(matrix, i, j - 1, sSize, iSize, 3, count, used);
-                }
-            }
+            usedCount++;
         }
+
+        return res;
     }
 }
