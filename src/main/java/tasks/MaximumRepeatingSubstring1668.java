@@ -8,15 +8,14 @@ public class MaximumRepeatingSubstring1668 {
     }
 
     public static int maxRepeating(String sequence, String word) {
-        int count = 0;
+        int res = 0;
+        var sb = new StringBuilder(word);
 
-        for (int i = 0; i < sequence.length(); i++) {
-            if (sequence.startsWith(word, i)) {
-                count++;
-                i += word.length() - 1;
-            }
+        while (sequence.contains(sb)) {
+            sb.append(word);
+            res++;
         }
 
-        return count;
+        return res;
     }
 }

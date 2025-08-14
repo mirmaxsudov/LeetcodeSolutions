@@ -17,7 +17,6 @@ public class FindTheKBeautyOfANumber2269 {
         for (int i = 1; i < k; i++)
             split *= 10;
 
-
         while (num != 0) {
             int newNum = num % split;
             if (newNum != 0 && (k == 1 || (newNum >= split / 10 || num / split > 0)) && realNum % newNum == 0)
