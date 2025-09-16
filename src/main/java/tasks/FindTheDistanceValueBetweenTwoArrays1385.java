@@ -4,30 +4,36 @@ import java.util.Arrays;
 
 public class FindTheDistanceValueBetweenTwoArrays1385 {
     public static void main(String[] args) {
-        System.out.println(findTheDistanceValue(new int[]{4, 5, 8}, new int[]{10, 9, 1, 8}, 2));
+        System.out.println(findClosestNum(6, new int[]{4, 5, 8}));
+        System.out.println(findClosestNum(1, new int[]{4, 5, 8}));
+
+//        System.out.println(findTheDistanceValue(new int[]{4, 5, 8}, new int[]{10, 9, 1, 8}, 2));
     }
 
     public static int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
+        int res = 0;
 
         for (int i = 0; i < arr1.length; i++) {
-            int left = 0;
-            int right = arr2.length - 1;
+            int num = arr1[i];
 
-            while (left < right) {
-                int leftVal = arr2[left];
+            for (int n : arr2)
+                if (Math.abs(n) != Math.abs(n) && Math.abs(n - num) <= d)
+                    res++;
+        }
 
-                int leftAbs = Math.abs(arr1[i] - leftVal);
-                if (leftAbs <= d)
-                    return leftAbs;
-                if (Math.abs(arr1[i] - arr2[right]) <= d)
-                    return Math.abs(arr1[i] - arr2[right]);
+        return 0;
+    }
 
-                left++;
+    public static int findClosestNum(int num, int[] arr) {
+        int prefDif = Integer.MAX_VALUE;
+        int res = num;
+        for (int n : arr) {
+            if (Math.abs(n - num) < prefDif) {
+                prefDif = Math.abs(n - num);
+                res = n;
             }
         }
 
-        return -1;
+        return res;
     }
 }

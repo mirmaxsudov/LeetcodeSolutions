@@ -3,7 +3,8 @@ package tasks;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-class ListNode {
+class
+ListNode {
     int val;
     ListNode next;
 
