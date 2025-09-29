@@ -4,50 +4,56 @@ import java.util.*;
 
 public class CouponCodeValidator3606 {
     public static void main(String[] args) {
+        System.out.println(validateCoupons(new String[]{"SAVE20", "", "PHARMA5", "SAVE@20"}, new String[]{"restaurant", "grocery", "pharmacy", "restaurant"}, new boolean[]{true, true, true, true}));
+    }
+
+    static class Coupon implements Comparable<Coupon> {
+        String code;
+        int index;
+
+        public Coupon(String code, int index) {
+            this.code = code;
+            this.index = index;
+        }
+
+        @Override
+        public int compareTo(Coupon o) {
+            int r = Integer.compare(index, o.index);
+            return r == 0 ? code.compareTo(o.code) : r;
+        }
     }
 
     public static List<String> validateCoupons(String[] codes, String[] businessLines, boolean[] isActives) {
-        List<String> res = new ArrayList<>();
+        Map<String, Integer> lineVals = Map.of(
+                "electronics", 1,
+                "grocery", 2,
+                "pharmacy", 3,
+                "restaurant", 4
+        );
 
-        Map<String, List<String>> mp = new HashMap<>();
-
-        for (String s : List.of("electronics", "grocery", "pharmacy", "restaurant"))
-            mp.put(s, new ArrayList<>());
+        List<Coupon> coupons = new ArrayList<>();
 
         for (int i = 0; i < codes.length; i++) {
-            if (!isActives[i])
-                continue;
-
             String code = codes[i];
+            String line = businessLines[i];
+            boolean isActive = isActives[i];
 
-            boolean isUpper, isLower, isNumber;
-            isLower = isUpper = isNumber = false;
-
-            for (char cha : code.toCharArray()) {
-                if (isLower && isUpper && isNumber)
-                    break;
-
-                if (Character.isDigit(cha))
-                    isNumber = true;
-                else if (Character.isUpperCase(cha))
-                    isUpper = true;
-                else if (Character.isLowerCase(cha))
-                    isLower = true;
-            }
-
-            if (isLower && isUpper && isNumber)
+            if (!isActive || !lineVals.containsKey(line) || code.isBlank() || !isValidCode(code))
                 continue;
 
-            String businessLine = businessLines[i];
-
-            mp.get(businessLine).add(code);
+            coupons.add(new Coupon(code, lineVals.get(line)));
         }
 
-        for (String businessLine : List.of("electronics", "grocery", "pharmacy", "restaurant")) {
-            List<String> validCodes = mp.get(businessLine).stream().sorted().toList();
-            res.addAll(validCodes);
-        }
+        Collections.sort(coupons);
 
-        return res;
+        return coupons.stream().map(c -> c.code).toList();
+    }
+
+    private static boolean isValidCode(String code) {
+        for (char ch : code.toCharArray())
+            if (!(Character.isAlphabetic(ch) || Character.isDigit(ch) || ch == '_'))
+                return false;
+
+        return true;
     }
 }
