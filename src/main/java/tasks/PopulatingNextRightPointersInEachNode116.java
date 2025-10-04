@@ -36,6 +36,12 @@ public class PopulatingNextRightPointersInEachNode116 {
         return root;
     }
 
+    public Node connectVer2(Node root) {
+
+
+        return root;
+    }
+
     static class Node {
         public int val;
         public Node left;
