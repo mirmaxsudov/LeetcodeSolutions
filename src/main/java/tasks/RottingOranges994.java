@@ -1,8 +1,6 @@
 package tasks;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class RottingOranges994 {
     public static void main(String[] args) {
@@ -12,6 +10,79 @@ public class RottingOranges994 {
                 {1, 1, 0},
                 {0, 1, 1}
         }));
+    }
+
+    public int orangesRottingVer2(int[][] grid) {
+        Queue<int[]> q = new LinkedList<>();
+        int freshOranges = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 2)
+                    q.offer(new int[]{i, j});
+                else if (grid[i][j] == 1)
+                    freshOranges++;
+            }
+        }
+
+        boolean isRotten = true;
+        int minute = 0;
+
+        while (!q.isEmpty() || isRotten) {
+            int size = q.size();
+
+            boolean isNewRotten = false;
+            for (int index = 0; index < size; index++) {
+                int[] poll = q.poll();
+
+                int i = poll[0], j = poll[1];
+
+                // We will check from top - right - bottom and left.
+                // top
+                if (i - 1 >= 0) {
+                    if (grid[i - 1][j] == 1) {
+                        q.offer(new int[]{i - 1, j});
+                        grid[i - 1][j] = 2;
+                        isNewRotten = true;
+                        freshOranges--;
+                    }
+                }
+                // right
+                if (j + 1 < grid[0].length) {
+                    if (grid[i][j + 1] == 1) {
+                        q.offer(new int[]{i, j + 1});
+                        grid[i][j + 1] = 2;
+                        isNewRotten = true;
+                        freshOranges--;
+                    }
+                }
+                // bottom
+                if (i + 1 < grid.length) {
+                    if (grid[i + 1][j] == 1) {
+                        q.offer(new int[]{i + 1, j});
+                        grid[i + 1][j] = 2;
+                        isNewRotten = true;
+                        freshOranges--;
+                    }
+                }
+                // left
+                if (j - 1 >= 0) {
+                    if (grid[i][j - 1] == 1) {
+                        q.offer(new int[]{i, j - 1});
+                        grid[i][j - 1] = 2;
+                        isNewRotten = true;
+                        freshOranges--;
+                    }
+                }
+            }
+
+            if (!isNewRotten)
+                isRotten = false;
+
+            minute++;
+        }
+
+        return freshOranges != 0 ? -1 : minute;
     }
 
     public int orangesRotting(int[][] grid) {
