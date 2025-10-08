@@ -1,6 +1,9 @@
 package tasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class FindTheMinimumAndMaximumNumberOfNodesBetweenCriticalPoints2058 {
     public static void main(String[] args) {
@@ -24,56 +27,49 @@ public class FindTheMinimumAndMaximumNumberOfNodesBetweenCriticalPoints2058 {
 //                                                                new ListNode(2,
 //                                                                        new ListNode(7, null)))))))));
 
-        System.out.println(Arrays.toString(nodesBetweenCriticalPoints(root)));
+//        System.out.println(Arrays.toString(nodesBetweenCriticalPoints(root)));
+
+        var main = new FindTheMinimumAndMaximumNumberOfNodesBetweenCriticalPoints2058();
+//        System.out.println(Arrays.toString(main.nodesBetweenCriticalPoints(new ListNode(5, new ListNode(3, new ListNode(1, new ListNode(2, new ListNode(5, new ListNode(1, new ListNode(2))))))))));
+        System.out.println(Arrays.toString(main.nodesBetweenCriticalPoints(new ListNode(6, new ListNode(8, new ListNode(4, new ListNode(1, new ListNode(9, new ListNode(6, new ListNode(6, new ListNode(10, new ListNode(6))))))))))));
     }
 
-    public static int[] nodesBetweenCriticalPoints(ListNode head) {
-        ListNode prev = head;
-        head = head.next;
-        int i = 1;
-        int indexMaxima = -1;
-        int secondMaxima = -1;
-        int indexMinima = -1;
-
-        while (head != null && head.next != null) {
-            int prevVal = prev.val;
-            int current = head.val;
-            int next = head.next.val;
-            i++;
-
-            prev = prev.next;
-            head = head.next;
-
-            if (prevVal > current && next > current) {
-                if (indexMinima == -1)
-                    indexMinima = i;
-                else {
-                    if (indexMaxima != -1)
-                        secondMaxima = indexMaxima;
-
-                    indexMaxima = i;
-                }
-                continue;
-            }
-
-            if (current > prevVal && current > next) {
-                if (indexMaxima != -1)
-                    secondMaxima = indexMaxima;
-
-                indexMaxima = i;
-                continue;
-            }
-        }
-
-        if (indexMaxima == indexMinima)
+    public int[] nodesBetweenCriticalPoints(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null)
             return new int[]{-1, -1};
 
-        if (indexMinima == -1 && secondMaxima != -1)
-            return new int[]{indexMaxima - secondMaxima, indexMaxima - secondMaxima};
+        List<Integer> points = new ArrayList<>();
 
-        if (indexMaxima == -1)
-            return new int[]{indexMinima, indexMinima};
+        ListNode prev = head;
+        head = head.next;
 
-        return new int[]{indexMaxima - indexMinima, indexMaxima - secondMaxima};
+        int index = 1;
+
+        while (head.next != null) {
+            if (head.val > prev.val && head.val > head.next.val) {
+                points.add(index + 1);
+            } else if (head.val < prev.val && head.val < head.next.val) {
+                points.add(index + 1);
+            }
+
+            index++;
+            prev = prev.next;
+            head = head.next;
+        }
+
+        if (points.isEmpty())
+            return new int[]{-1, -1};
+
+        System.out.println("points = " + points);
+
+        Collections.sort(points);
+
+        int min = points.get(1) - points.getFirst();
+
+        for (int i = 0; i < points.size(); i++)
+            for (int j = i + 1; j < points.size(); j++)
+                min = Math.min(min, Math.abs(points.get(i) - points.get(j)));
+
+        return new int[]{min, points.getLast() - points.getFirst()};
     }
 }
