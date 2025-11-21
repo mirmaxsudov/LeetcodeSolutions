@@ -6,14 +6,24 @@ public class SplitLinkedListInParts725 {
     }
 
     public ListNode[] splitListToParts(ListNode head, int k) {
-        int size = getSize(head);
         ListNode[] res = new ListNode[k];
+        int size = getSize(head);
 
-        if (size < k) {
-            for (int i = 0; i < size; i++) {
-                res[i] = new ListNode(head.val);
+        if (k >= size) {
+            int index = 0;
+            while (head != null) {
+                res[index] = new ListNode(head.val);
                 head = head.next;
             }
+
+            return res;
+        }
+
+        ListNode temp = new ListNode(-1);
+        ListNode helper = temp;
+
+        for (int i = 0; i < size / k; i++) {
+            
         }
 
         return res;
