@@ -18,8 +18,6 @@ public class MaximizeExpressionOfThreeElements3745 {
             min = Math.min(min, nums[i]);
         }
 
-        System.out.println(max1 + " " + max2 + " " + min);
-
         return max1 + max2 - min;
     }
 }
