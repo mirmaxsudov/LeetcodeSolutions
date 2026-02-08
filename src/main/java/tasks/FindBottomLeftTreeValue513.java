@@ -1,36 +1,38 @@
 package tasks;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class FindBottomLeftTreeValue513 {
     public static void main(String[] args) {
 
     }
 
-    private int leftValue;
-    private int deepestValue;
-    private int deepestLevel;
-    private int level;
-
     public int findBottomLeftValue(TreeNode root) {
-        leftValue = -1;
-        level = -1;
-        deepestValue = -1;
-        deepestLevel = -1;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
 
-        dfs(root, 1, 0);
-        return leftValue == -1 ? deepestValue : leftValue;
-    }
+        int result = root.val;
 
-    private void dfs(TreeNode root, int type, int level) {
-        if (root == null)
-            return;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
 
-        if (type == 0 && level > this.level)
-            leftValue = root.val;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
 
-        if (level > deepestLevel)
-            deepestValue = root.val;
+                if (i == 0)
+                    result = node.val;
 
-        dfs(root.left, 0, level + 1);
-        dfs(root.right, 1, level + 1);
+                if (node.left != null)
+                    queue.add(node.left);
+
+                if (node.right != null)
+                    queue.add(node.right);
+            }
+        }
+
+        return result;
     }
 }
