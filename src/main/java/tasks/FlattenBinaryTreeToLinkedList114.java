@@ -6,6 +6,5 @@ public class FlattenBinaryTreeToLinkedList114 {
     }
 
     public void flatten(TreeNode root) {
-
     }
 }
