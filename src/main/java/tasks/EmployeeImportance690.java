@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class EmployeeImportance690 {
     public static void main(String[] args) {
-
     }
 
     Map<Integer, Employee> mp = new HashMap<>();
