@@ -11,19 +11,29 @@ public class NumberOfIslands200 {
     }
 
     public static int numIslands(char[][] grid) {
-        int num = 0;
-        for (int i = 0; i < grid.length; i++)
-            for (int k = 0; k < grid[i].length; k++)
-                if (grid[i][k] == '1' && isIslands(grid, i, k))
-                    num++;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        int count = 0;
 
-        return num;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    dfs(grid, visited, i, j);
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
-    private static boolean isIslands(char[][] grid, int i, int k) {
-        if (grid[i][k] == '0')
-            return false;
+    private static void dfs(char[][] grid, boolean[][] visited, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || visited[i][j] || grid[i][j] == '0')
+            return;
 
-        return isIslands(grid, i + 1, k) || isIslands(grid, i, k + 1);
+        visited[i][j] = true;
+        dfs(grid, visited, i + 1, j);
+        dfs(grid, visited, i - 1, j);
+        dfs(grid, visited, i, j + 1);
+        dfs(grid, visited, i, j - 1);
     }
 }
