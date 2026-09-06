@@ -1,49 +1,53 @@
 package tasks;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Queue;
 
 public class BinaryTreeZigzagLevelOrderTraversal103 {
     public static void main(String[] args) {
 
     }
 
+
     public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> r = new ArrayList<>();
 
-        List<TreeNode> nodes = new ArrayList<>();
-        nodes.add(root);
-        var isRight = true;
+        Queue<Object[]> q = new LinkedList<>();
 
-        while (!nodes.isEmpty()) {
-            List<Integer> list = new ArrayList<>();
-            if (isRight)
-                for (TreeNode node : nodes)
-                    list.add(node.val);
-            else
-                for (int i = nodes.size() - 1; i >= 0; i--)
-                    list.add(nodes.get(i).val);
+        q.add(new Object[]{0, root});
 
-            res.add(list);
-            isRight = !isRight;
+        boolean fromLeft = true;
+        int cl = 0, l = 1;
 
-            List<TreeNode> newNodes = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
 
-            int len = nodes.size();
+        while (!q.isEmpty()) {
+            Object[] p = q.poll();
+            TreeNode pt = (TreeNode) p[1];
+            int pl = (int) p[0];
 
-            for (TreeNode node : nodes) {
-                if (node.left != null)
-                    newNodes.add(node.left);
-                if (node.right != null)
-                    newNodes.add(node.right);
+            if (pt == null) continue;
+
+            if (cl != pl) {
+                r.add(list);
+                list = new ArrayList<>();
+                fromLeft = !fromLeft;
+                l++;
+                cl = pl;
+
             }
+            if (fromLeft) list.add(pt.val);
+            else list.addFirst(pt.val);
 
-            nodes.clear();
-            nodes = newNodes;
+            if (pt.left != null) q.add(new Object[]{l, pt.left});
+            if (pt.right != null) q.add(new Object[]{l, pt.right});
         }
 
-        return res;
+        if (!list.isEmpty())
+            r.add(list);
+
+        return r;
     }
 }
